@@ -8,7 +8,7 @@ Socket é uma abstração do protocolo TCP/IP que permite processos em diferente
 
 Neste estudo focarei no desenvolvimento cliente-servidor, o qual possui um provedor de informações central e clientes que se conectam a ele simultaneamente. Veja a imagem: 
 
-![foto de [omnisci](https://www.omnisci.com/technical-glossary/client-server)](Descobrindo%20Sockets%20O%20Mundo%20Oculto%20da%20Comunicac%CC%A7a%CC%83%20e258dce4e37147ae97447493458a024a/Untitled.png)
+![foto de [omnisci](https://www.omnisci.com/technical-glossary/client-server)](readme_files/Untitled.png)
 
 foto de [omnisci](https://www.omnisci.com/technical-glossary/client-server)
 
@@ -16,7 +16,7 @@ foto de [omnisci](https://www.omnisci.com/technical-glossary/client-server)
 
 A imagem a seguir mostra uma visão geral do sistema de chamadas envolvido na criação de um socket TCP:
 
-![Untitled](Descobrindo%20Sockets%20O%20Mundo%20Oculto%20da%20Comunicac%CC%A7a%CC%83%20e258dce4e37147ae97447493458a024a/Untitled%201.png)
+![Untitled](readme_files/Untitled%201.png)
 
 1. O processo responsável por ser o servidor inicia um socket. No caso do Java, isso é implementado pela classe `ServerSocket` do pacote java.io. Através dela, você irá conseguir esperar por requisições vindas por meio da rede. O conteúdo dessas requisições será direcionado para a sua aplicação Java.
 2. Em seguida, o `ServerSocket`fará um *bind* da aplicação em alguma porta. A porta é um número inteiro escolhido, como 8080. Isso significa que vamos “pendurar” a aplicação na porta 8080, então toda vez que algum processo enviar dados para esta porta, eles serão direcionados para a aplicação do servidor Java.
