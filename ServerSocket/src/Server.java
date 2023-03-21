@@ -12,37 +12,18 @@ public class Server {
     private PrintWriter printWriter;
     private BufferedReader bufferedReader;
 
+
     public void start(int port) throws IOException {
-        try {
-            serverSocket = new ServerSocket(port);
-            System.out.println("Listening on port " + port + "...");
-            while (true) {
-                clientSocket = serverSocket.accept();
-                setPrintWriter(clientSocket);
-                setBufferedReader(clientSocket);
-
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    System.out.println("Cliente: " + line);
-                    System.out.print("Você: ");
-                    Scanner scanner = new Scanner(System.in);
-
-                    String message = "";
-                    message = scanner.nextLine();
-                    printWriter.println(message);
-                }
-            }
+        serverSocket = new ServerSocket(port);
+        System.out.println("Listening on port " + port + "...");
+        int count = 0;
+        while (true) {
+            clientSocket = serverSocket.accept();
+            count++;
+            System.out.println("Total clients connected: " + count);
+            ClientThread clientThread = new ClientThread(clientSocket, count);
+            clientThread.start();
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
-    private void setPrintWriter(Socket clientSocket) throws IOException {
-        printWriter = new PrintWriter(clientSocket.getOutputStream(), true);
-    }
-
-    private void setBufferedReader(Socket clientSocket) throws IOException {
-        bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     }
 }

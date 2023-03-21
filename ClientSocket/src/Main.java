@@ -10,7 +10,7 @@ public class Main {
         String message = "";
         while(!message.equals(".")) {
             Scanner scanner = new Scanner(System.in);
-            System.out.print("Você: ");
+            System.out.print("You: ");
             message = scanner.nextLine();
 
             String res = client.sendMessage(message);
