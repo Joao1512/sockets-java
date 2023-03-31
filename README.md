@@ -1,10 +1,10 @@
 # Descobrindo Sockets: O Mundo Oculto da Comunicação na Internet
 
-# O que são sockets
+## O que são sockets
 
 Socket é uma abstração do protocolo TCP/IP que permite processos em diferentes computadores de uma rede se comunicarem de maneira bidimensional e contínua. Isso permite a criação de um “túnel” constante entre dois processos, tornando-se desnecessária a criação de uma nova requisição toda vez que um dos lados deseja enviar algo, como acontece no protocolo HTTP.
 
-# Definição Cliente-Servidor
+## Definição Cliente-Servidor
 
 Neste estudo focarei no desenvolvimento cliente-servidor, o qual possui um provedor de informações central e clientes que se conectam a ele simultaneamente. Veja a imagem: 
 
@@ -12,21 +12,21 @@ Neste estudo focarei no desenvolvimento cliente-servidor, o qual possui um prove
 
 foto de [omnisci](https://www.omnisci.com/technical-glossary/client-server)
 
-# O Diagrama de uma API Socket
+## O Diagrama de uma API Socket
 
 A imagem a seguir mostra uma visão geral do sistema de chamadas envolvido na criação de um socket TCP:
 
 ![Untitled](readme_files/Untitled%201.png)
 
 1. O processo responsável por ser o servidor inicia um socket. No caso do Java, isso é implementado pela classe `ServerSocket` do pacote java.io. Através dela, você irá conseguir esperar por requisições vindas por meio da rede. O conteúdo dessas requisições será direcionado para a sua aplicação Java.
-2. Em seguida, o `ServerSocket`fará um *bind* da aplicação em alguma porta. A porta é um número inteiro escolhido, como 8080. Isso significa que vamos “pendurar” a aplicação na porta 8080, então toda vez que algum processo enviar dados para esta porta, eles serão direcionados para a aplicação do servidor Java.
+2. Em seguida, o `ServerSocket` fará um *bind* da aplicação em alguma porta. A porta é um número inteiro escolhido, como 8080. Isso significa que vamos “pendurar” a aplicação na porta 8080, então toda vez que algum processo enviar dados para esta porta, eles serão direcionados para a aplicação do servidor Java.
 3. O servidor entra em modo de escuta, permanecendo congelado até que algum processo tente estabelecer uma conexão.
 4. Para que um processo consiga fazer uma requisição ao servidor, é preciso também iniciar um socket no lado deste processo. Para isso, o Java fornece a classe `Socket`. No construtor da classe, iremos inserir o ip da máquina a qual tem o processo servidor rodando seguido da porta usada por este servidor.
 5. Antes que o client envie dados efetivamente, ele fará uma *connection request*,  que precisará ser aceita pelo servidor através do *accept()*.
 6. Eles entrarão em um loop que se consiste em um fluxo constante de escrita e leitura de informações nos dois lados da conexão.
 7. O fluxo de informações se encerra quando o client terminar a conexão.
 
-# Iniciando um Servidor
+## Iniciando um Servidor
 
  
 
