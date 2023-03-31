@@ -12,6 +12,7 @@ public class ClientThread extends Thread {
 
     private Socket clientSocket;
 
+
     private int id;
 
     public ClientThread(Socket clientSocket, int id) {
@@ -23,17 +24,8 @@ public class ClientThread extends Thread {
         try {
             setPrintWriter(this.clientSocket);
             setBufferedReader(this.clientSocket);
-
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                System.out.println("Client: " + line);
-                System.out.print("You: ");
-                Scanner scanner = new Scanner(System.in);
-
-                String message = "";
-                message = scanner.nextLine();
-                printWriter.println(message);
-            }
+            writeThread.start();
+            readThread.start();
         }
 
         catch (IOException e) {
@@ -44,6 +36,40 @@ public class ClientThread extends Thread {
         }
     }
 
+    private Thread writeThread = new Thread(new Runnable() {
+        public void run() {
+            write();
+        }
+    });
+
+    private void write() {
+        String message = "";
+        while(!message.equals("/")) {
+            Scanner scanner = new Scanner(System.in);
+            message = scanner.nextLine();
+
+            sendMessage(message);
+        }
+    }
+
+    private void sendMessage(String message) {
+        printWriter.println(message);
+    }
+
+    private Thread readThread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            String line;
+            while (true) {
+                try {
+                    line = bufferedReader.readLine();
+                    System.out.println("Client: " + line);
+                } catch (IOException e) {
+                    System.out.println("Erro ao ler mensagem do cliente: " + e.getMessage());
+                }
+            }
+        }
+    });
 
     private void setPrintWriter(Socket clientSocket) throws IOException {
         printWriter = new PrintWriter(clientSocket.getOutputStream(), true);
