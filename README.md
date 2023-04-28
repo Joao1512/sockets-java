@@ -2,7 +2,7 @@
 
 ## O que são sockets
 
-Socket é uma abstração do protocolo TCP/IP que permite processos em diferentes computadores de uma rede se comunicarem de maneira bidimensional e contínua. Isso permite a criação de um “túnel” constante entre dois processos, tornando-se desnecessária a criação de uma nova requisição toda vez que um dos lados deseja enviar algo, como acontece no protocolo HTTP.
+Socket é uma abstração do protocolo TCP/IP que permite processos em diferentes computadores de uma rede se comunicarem de maneira bidimensional e contínua. Isso permite a criação de um “túnel” constante entre dois processos. A partir dos sockets são implementados diferentes protocolos, isto é, padrões de comunicação entre o servidor e cliente. O mais conhecido atualmente é o HTTP, mas também existem SMTP, SSH, FTP e etc.  
 
 ## Definição Cliente-Servidor
 
